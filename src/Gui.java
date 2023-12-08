@@ -50,7 +50,6 @@ public class Gui {
 		myExpensesBtn.addActionListener(new ActionListener() {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
-	            	ApiClient.addNew("9000", "19-12-2001", "1", "sample");
 	            }
 	        });
 
@@ -61,6 +60,7 @@ public class Gui {
 		addExpense.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	AddNew addNew = new AddNew();
             }
         });
 
@@ -71,6 +71,7 @@ public class Gui {
 		removeExpense.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	Remove remove = new Remove();
             }
         });
 
