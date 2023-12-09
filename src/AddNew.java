@@ -5,6 +5,10 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -18,20 +22,23 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
 public class AddNew {
 	
-	public AddNew() {
+	public AddNew(){
 
 		Font normal = new Font("Source Code Pro", Font.PLAIN, 15);
 		Border border = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.DARK_GRAY);
 
 		JFrame frame = new JFrame();
 		
-		ImageIcon icono = new ImageIcon("favicon.png");
+		ImageIcon icono = new ImageIcon("icons/favicon.png");
 		Image imagen = icono.getImage();
 		frame.setIconImage(imagen);
 		
-		String imagePath = "addnew.png";
+		String imagePath = "icons/addnew.png";
         ImageIcon imageIcon = new ImageIcon(imagePath);
         JLabel label = new JLabel(imageIcon);
 		
@@ -80,7 +87,18 @@ public class AddNew {
 		doneBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	frame.setVisible(false);
+            	
+            	BigDecimal amountVal = new BigDecimal(amount.getText());
+            	Date expenseDate = null;
+				try {
+					expenseDate = new SimpleDateFormat("yyyy-MM-dd").parse(date.getText());
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+            	int categoryIndex = category.getSelectedIndex();
+            	String desc = description.getText();
+            	
+            	ApiClient.insertNewExpense(amountVal, expenseDate, categoryIndex, desc);
             }
         });
 		

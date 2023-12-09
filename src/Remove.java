@@ -26,11 +26,11 @@ public class Remove {
 
 		JFrame frame = new JFrame();
 		
-		ImageIcon icono = new ImageIcon("favicon.png");
+		ImageIcon icono = new ImageIcon("icons/favicon.png");
 		Image imagen = icono.getImage();
 		frame.setIconImage(imagen);
 		
-		String imagePath = "remove.png";
+		String imagePath = "icons/remove.png";
         ImageIcon imageIcon = new ImageIcon(imagePath);
         JLabel label = new JLabel(imageIcon);
 		
